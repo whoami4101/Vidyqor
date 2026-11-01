@@ -36,7 +36,7 @@ Repository = "https://github.com/whoami4101/Vidyqor"
 Changelog = "https://github.com/whoami4101/Vidyqor/blob/main/CHANGELOG.md"
 
 [build-system]
-requires = ["flit_core >=3.4,<4"]
+requires = ["flit_core >=3.4,<5"]
 build-backend = "flit_core.buildapi"
 
 # flit_core reads the version dynamically from vidyqor/__init__.py __version__.
