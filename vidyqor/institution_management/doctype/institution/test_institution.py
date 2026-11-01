@@ -1,9 +1,9 @@
 import frappe
-from frappe.tests import IntegrationTestCase
+from frappe.tests.utils import FrappeTestCase
 from frappe.utils import now_datetime
 
 
-class TestInstitution(IntegrationTestCase):
+class TestInstitution(FrappeTestCase):
 	def tearDown(self):
 		frappe.db.rollback()
 
