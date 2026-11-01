@@ -1,0 +1,83 @@
+[project]
+name = "vidyqor"
+description = "Vidyqor — an open source Education ERP built on the Frappe Framework. One Platform. Every Institution."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "Vidyqor Community" },
+]
+keywords = [
+    "frappe",
+    "education",
+    "erp",
+    "school",
+    "college",
+    "university",
+    "institution",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Framework :: Frappe",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/whoami4101/Vidyqor"
+Repository = "https://github.com/whoami4101/Vidyqor"
+"Bug Reports" = "https://github.com/whoami4101/Vidyqor/issues"
+Changelog = "https://github.com/whoami4101/Vidyqor/blob/main/CHANGELOG.md"
+
+[build-system]
+requires = ["flit_core >=3.4,<4"]
+build-backend = "flit_core.buildapi"
+
+# flit_core reads the version dynamically from vidyqor/__init__.py __version__.
+[tool.flit.module]
+name = "vidyqor"
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.format]
+indent-style = "tab"
+quote-style = "double"
+
+[tool.ruff.lint]
+select = [
+    "F",
+    "E",
+    "W",
+    "I",
+    "UP",
+    "B",
+    "RUF",
+]
+ignore = [
+    "B017",   # assertRaises(Exception) — common in Frappe tests
+    "B018",   # found useless expression — Frappe DocType field access patterns
+    "B023",   # function definition in loop — common Frappe callback pattern
+    "B904",   # raise without from inside except — noisy for Frappe validation
+    "E101",   # indentation contains mixed spaces and tabs (tabs are the style)
+    "E402",   # module level import not at top — Frappe apps import frappe lazily
+    "E501",   # line too long — handled by the formatter
+    "E741",   # ambiguous variable name
+    "F401",   # imported but unused — Frappe hooks/overrides re-export symbols
+    "F403",   # star import — Frappe modules use them intentionally
+    "W191",   # indentation contains tabs (tabs are the style)
+    "RUF001", # ambiguous unicode characters in strings
+    "UP030",  # format specifiers
+    "UP031",  # printf string formatting
+]
+typing-modules = ["frappe.types.DF"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["vidyqor"]

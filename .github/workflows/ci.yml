@@ -1,0 +1,110 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+# Minimal permissions: this workflow only needs to read the repository.
+permissions:
+  contents: read
+
+# Cancel superseded runs on the same ref to save CI minutes.
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  server-tests:
+    name: Frappe server tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    services:
+      mariadb:
+        image: mariadb:10.6
+        env:
+          MYSQL_ROOT_PASSWORD: root
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+      redis-cache:
+        image: redis:7-alpine
+        ports:
+          - 13000:6379
+
+      redis-queue:
+        image: redis:7-alpine
+        ports:
+          - 11000:6379
+
+    env:
+      SITE_NAME: test_site.localhost
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: vidyqor
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libmysqlclient-dev mariadb-client redis-tools
+          sudo npm install -g yarn
+
+      - name: Install frappe-bench
+        run: pip install frappe-bench
+
+      - name: Initialize bench
+        run: |
+          bench init --skip-redis-config-generation --frappe-branch version-15 frappe-bench
+        working-directory: ${{ github.workspace }}
+
+      - name: Configure bench to use CI services
+        working-directory: ${{ github.workspace }}/frappe-bench
+        run: |
+          bench set-config -g db_host 127.0.0.1
+          bench set-config -g db_port 3306
+          bench set-config -g redis_cache "redis://127.0.0.1:13000"
+          bench set-config -g redis_queue "redis://127.0.0.1:11000"
+          bench set-config -g redis_socketio "redis://127.0.0.1:11000"
+
+      - name: Create test site
+        working-directory: ${{ github.workspace }}/frappe-bench
+        run: |
+          bench new-site "$SITE_NAME" \
+            --mariadb-root-password root \
+            --admin-password admin \
+            --no-mariadb-socket
+          bench --site "$SITE_NAME" set-config allow_tests true
+
+      - name: Get and install the Vidyqor app
+        working-directory: ${{ github.workspace }}/frappe-bench
+        run: |
+          bench get-app vidyqor "${{ github.workspace }}/vidyqor"
+          bench --site "$SITE_NAME" install-app vidyqor
+
+      - name: Run Vidyqor tests
+        working-directory: ${{ github.workspace }}/frappe-bench
+        # Runs: bench run-tests --app vidyqor (scoped to the test site).
+        run: |
+          bench --site "$SITE_NAME" run-tests --app vidyqor

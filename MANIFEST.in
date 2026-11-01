@@ -1,0 +1,40 @@
+# Packaging manifest for the Vidyqor Frappe app.
+
+# Include top-level metadata and governance files.
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CONTRIBUTING.md
+include CODE_OF_CONDUCT.md
+include SECURITY.md
+include SUPPORT.md
+include MANIFEST.in
+include pyproject.toml
+
+# Include Frappe app package data.
+include vidyqor/*.txt
+include vidyqor/*.json
+recursive-include vidyqor *.css
+recursive-include vidyqor *.csv
+recursive-include vidyqor *.html
+recursive-include vidyqor *.ico
+recursive-include vidyqor *.js
+recursive-include vidyqor *.json
+recursive-include vidyqor *.md
+recursive-include vidyqor *.png
+recursive-include vidyqor *.svg
+recursive-include vidyqor *.txt
+
+# Exclude build artifacts and caches.
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude __pycache__
+global-exclude .DS_Store
+recursive-exclude vidyqor *.pyc
+recursive-exclude vidyqor node_modules *
+prune **/__pycache__
+prune .git
+prune .github
+prune docs
+prune tests
+prune scripts

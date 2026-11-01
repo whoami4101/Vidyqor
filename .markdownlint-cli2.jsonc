@@ -1,0 +1,28 @@
+// markdownlint-cli2 configuration (JSONC — comments are allowed here).
+// Run with: markdownlint-cli2 "**/*.md"
+{
+  // Rule configuration. See https://github.com/DavidAnson/markdownlint#rules
+  "config": {
+    // Enable the default rule set as a baseline.
+    "default": true,
+    // MD013: line length — docs and README use long prose lines and tables.
+    "MD013": false,
+    // MD033: allow inline HTML (badges, alignment) in README/docs.
+    "MD033": false,
+    // MD041: first line in a file need not be a top-level heading (badges first).
+    "MD041": false,
+    // MD024: allow duplicate headings when nested under different sections
+    // (e.g. repeated "Added"/"Changed" headings in CHANGELOG.md).
+    "MD024": { "siblings_only": true },
+    // MD026: allow trailing punctuation in headings (e.g. taglines).
+    "MD026": false
+  },
+  // Files and folders markdownlint should not scan.
+  "ignores": [
+    "node_modules",
+    ".github/ISSUE_TEMPLATE",
+    "CHANGELOG.md"
+  ],
+  // Treat every discovered issue as a problem (no silent passes).
+  "gitignore": true
+}

@@ -1,0 +1,28 @@
+# Normalize line endings across platforms.
+* text=auto eol=lf
+
+# Explicit text files.
+*.py    text eol=lf
+*.js    text eol=lf
+*.json  text eol=lf
+*.jsonc text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.toml  text eol=lf
+*.txt   text eol=lf
+*.sh    text eol=lf
+*.svg   text eol=lf
+
+# Binary assets.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+
+# Linguist hints: keep docs and vendored metadata out of language stats.
+docs/**        linguist-documentation
+*.md           linguist-documentation
+.github/**     linguist-generated=false
+*.svg          linguist-detectable=false
