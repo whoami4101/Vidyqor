@@ -43,3 +43,5 @@ coverage.xml
 *.swo
 .DS_Store
 Thumbs.db
+# Agent workflow metadata (local only)
+.agents/
