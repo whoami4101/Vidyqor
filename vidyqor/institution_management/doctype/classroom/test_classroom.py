@@ -1,8 +1,8 @@
 import frappe
-from frappe.tests import IntegrationTestCase
+from frappe.tests.utils import FrappeTestCase
 
 
-class TestClassroom(IntegrationTestCase):
+class TestClassroom(FrappeTestCase):
 	def tearDown(self):
 		frappe.db.rollback()
 
