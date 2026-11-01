@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "autoname": "field:department_name",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "department_name",
+  "department_code",
+  "institution",
+  "head_of_department",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "department_name",
+   "fieldtype": "Data",
+   "label": "Department Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "department_code",
+   "fieldtype": "Data",
+   "label": "Department Code",
+   "unique": 1
+  },
+  {
+   "fieldname": "institution",
+   "fieldtype": "Link",
+   "label": "Institution",
+   "options": "Institution"
+  },
+  {
+   "fieldname": "head_of_department",
+   "fieldtype": "Data",
+   "label": "Head of Department"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "idx": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Department Management",
+ "name": "Department",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

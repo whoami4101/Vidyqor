@@ -1,0 +1,78 @@
+{
+ "actions": [],
+ "autoname": "field:program_name",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "program_name",
+  "program_abbreviation",
+  "department",
+  "duration_years",
+  "program_level",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "program_name",
+   "fieldtype": "Data",
+   "label": "Program Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "program_abbreviation",
+   "fieldtype": "Data",
+   "label": "Program Abbreviation"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "duration_years",
+   "fieldtype": "Int",
+   "label": "Duration (Years)"
+  },
+  {
+   "fieldname": "program_level",
+   "fieldtype": "Select",
+   "label": "Program Level",
+   "options": "Undergraduate\nPostgraduate\nDiploma\nCertificate\nDoctorate"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "idx": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Academic Management",
+ "name": "Program",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

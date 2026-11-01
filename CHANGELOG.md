@@ -9,10 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Planned
 
-- Implementation of the 18 functional modules (all currently **Planned**):
-  Institution, Student, Admission, Academic, Department, Faculty, Attendance,
-  Examination, Finance & Fee, Library, Hostel, Transport, Placement, Human Resource,
-  Communication, Document, Reports & Analytics, and System Configuration.
+- Continued implementation of the remaining functional modules (currently **Planned**):
+  Student, Admission, Faculty, Attendance, Examination, Finance & Fee, Library, Hostel,
+  Transport, Placement, Human Resource, Communication, Document, Reports & Analytics,
+  and System Configuration.
+
+## [0.2.0] - Unreleased
+
+> Phase 2: first functional DocTypes. **Institution Management** and **Academic
+> Management** are now **In Development** — schema, validation, and passing tests are
+> present, but no UI, dashboards, portals, or workflows yet. **Department Management**
+> has a single minimal supporting DocType. The other 15 modules remain Planned. This
+> version has not been tagged or published.
+
+### Added
+
+- Institution Management DocTypes: Institution, Campus, Building, Classroom,
+  Academic Year — with field schemas, `validate()` rules (future established-year guard,
+  classroom capacity > 0, academic-year end-after-start), and IntegrationTestCase tests.
+- Academic Management DocTypes: Program, Course, Semester, Batch, Section — with field
+  schemas, `validate()` rules (course credits ≥ 0, semester end-after-start, batch
+  end-year ≥ start-year, section capacity > 0), and IntegrationTestCase tests.
+- Department Management: minimal Department DocType (supporting Institution/Academic
+  Management; full module still Planned).
+- Bumped `__version__` to `0.2.0`.
 
 ## [0.1.0] - Unreleased
 
@@ -40,4 +60,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Helper script `scripts/validate_scaffold.sh` and a project logo asset.
 
 [Unreleased]: https://github.com/whoami4101/Vidyqor/compare/main...HEAD
+[0.2.0]: https://github.com/whoami4101/Vidyqor/compare/v0.1.0...main
 [0.1.0]: https://github.com/whoami4101/Vidyqor/releases/tag/v0.1.0

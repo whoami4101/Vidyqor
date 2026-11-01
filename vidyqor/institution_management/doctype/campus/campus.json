@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "autoname": "field:campus_name",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "campus_name",
+  "institution",
+  "campus_code",
+  "address",
+  "city",
+  "state",
+  "is_main_campus"
+ ],
+ "fields": [
+  {
+   "fieldname": "campus_name",
+   "fieldtype": "Data",
+   "label": "Campus Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "institution",
+   "fieldtype": "Link",
+   "label": "Institution",
+   "options": "Institution",
+   "reqd": 1
+  },
+  {
+   "fieldname": "campus_code",
+   "fieldtype": "Data",
+   "label": "Campus Code",
+   "unique": 1
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_main_campus",
+   "fieldtype": "Check",
+   "label": "Is Main Campus"
+  }
+ ],
+ "idx": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Institution Management",
+ "name": "Campus",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

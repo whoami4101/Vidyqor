@@ -1,0 +1,127 @@
+{
+ "actions": [],
+ "autoname": "field:institution_name",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "institution_name",
+  "institution_code",
+  "institution_type",
+  "established_year",
+  "email",
+  "phone",
+  "website",
+  "address",
+  "city",
+  "state",
+  "country",
+  "logo",
+  "description",
+  "is_active"
+ ],
+ "fields": [
+  {
+   "fieldname": "institution_name",
+   "fieldtype": "Data",
+   "label": "Institution Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "institution_code",
+   "fieldtype": "Data",
+   "label": "Institution Code",
+   "unique": 1
+  },
+  {
+   "fieldname": "institution_type",
+   "fieldtype": "Select",
+   "label": "Institution Type",
+   "options": "University\nCollege\nSchool\nInstitute"
+  },
+  {
+   "fieldname": "established_year",
+   "fieldtype": "Int",
+   "label": "Established Year"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email",
+   "options": "Email"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone"
+  },
+  {
+   "fieldname": "website",
+   "fieldtype": "Data",
+   "label": "Website"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "city",
+   "fieldtype": "Data",
+   "label": "City"
+  },
+  {
+   "fieldname": "state",
+   "fieldtype": "Data",
+   "label": "State"
+  },
+  {
+   "fieldname": "country",
+   "fieldtype": "Data",
+   "label": "Country"
+  },
+  {
+   "fieldname": "logo",
+   "fieldtype": "Attach Image",
+   "label": "Logo"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Description"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "label": "Is Active"
+  }
+ ],
+ "idx": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Institution Management",
+ "name": "Institution",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

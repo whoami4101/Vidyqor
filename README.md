@@ -76,15 +76,18 @@ Reports & Analytics, and System Configuration.
 
 ## Feature implementation status
 
-The only thing present today is the project foundation. Every functional module is **Planned**.
+Institution Management and Academic Management are now **In Development** — initial DocTypes
+with schema, validation, and passing tests, but no UI, dashboards, portals, or workflows yet.
+Department Management has a single minimal supporting DocType. Every other functional module
+is still **Planned**.
 
 | Area | Status |
 | --- | --- |
 | Project foundation / scaffold | ✅ Present |
-| Institution Management | 🔲 Planned |
+| Institution Management | 🚧 In Development |
 | Student Management | 🔲 Planned |
 | Admission Management | 🔲 Planned |
-| Academic Management | 🔲 Planned |
+| Academic Management | 🚧 In Development |
 | Department Management | 🔲 Planned |
 | Faculty Management | 🔲 Planned |
 | Attendance Management | 🔲 Planned |

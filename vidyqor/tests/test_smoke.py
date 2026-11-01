@@ -14,4 +14,4 @@ import vidyqor
 
 class TestSmoke(FrappeTestCase):
 	def test_version(self):
-		self.assertEqual(vidyqor.__version__, "0.1.0")
+		self.assertEqual(vidyqor.__version__, "0.2.0")

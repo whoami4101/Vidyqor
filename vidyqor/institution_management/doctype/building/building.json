@@ -1,0 +1,64 @@
+{
+ "actions": [],
+ "autoname": "field:building_name",
+ "creation": "2026-01-01 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "building_name",
+  "campus",
+  "building_code",
+  "number_of_floors"
+ ],
+ "fields": [
+  {
+   "fieldname": "building_name",
+   "fieldtype": "Data",
+   "label": "Building Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "campus",
+   "fieldtype": "Link",
+   "label": "Campus",
+   "options": "Campus",
+   "reqd": 1
+  },
+  {
+   "fieldname": "building_code",
+   "fieldtype": "Data",
+   "label": "Building Code"
+  },
+  {
+   "fieldname": "number_of_floors",
+   "fieldtype": "Int",
+   "label": "Number of Floors"
+  }
+ ],
+ "idx": 0,
+ "istable": 0,
+ "links": [],
+ "modified": "2026-01-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Institution Management",
+ "name": "Building",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1,
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}
