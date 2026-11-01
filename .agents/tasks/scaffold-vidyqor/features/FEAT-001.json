@@ -1,0 +1,38 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Hand-author the complete vidyqor/ Frappe app Python package: package files (hooks.py, modules.txt, patches.txt, __init__.py), support subpackages (config/api/services/utils/templates/www), the 18 snake_case module folders each with a doctype/ placeholder, the tests package with a FrappeTestCase smoke test, and the real SVG logo asset. Minimal stubs only, NO doctypes, NO ERP business logic. Grounded in live frappe/crm and frappe/frappe_docs conventions (see context.json). This FEAT is self-contained and must leave the package byte-compilable without Frappe installed; FEAT-002 (repo meta/automation/docs/README) depends on the paths this FEAT creates (logo asset, package layout, __version__).",
+  "status": "completed",
+  "steps": [
+    "Read /home/om/Tools/Vidyqor/.agents/tasks/scaffold-plan.md and context.json FIRST; context.json replaces re-exploration.",
+    "Create vidyqor/__init__.py with exactly: __version__ = \"0.1.0\".",
+    "Create vidyqor/hooks.py: module-level app_name='vidyqor', app_title='Vidyqor', app_publisher='Vidyqor Community', app_description (Education ERP, tagline 'One Platform. Every Institution.'), app_license='mit', required_apps=[], plus the standard large COMMENTED hook scaffolding block (includes, home pages, installation, doc_events, scheduler_events, testing, overrides) mirroring frappe_docs/hooks.py style. For the contact, use a comment pointing to GitHub reporting rather than an invented email.",
+    "Create vidyqor/modules.txt with the 18 Title Case module names, one per line, in the order given in context.json (Institution Management ... System Configuration), no trailing blank lines beyond one newline.",
+    "Create vidyqor/patches.txt containing only a header comment (e.g. '# Patches are applied in order; none yet for the foundation scaffold.'), no patch entries.",
+    "Create vidyqor/config/__init__.py, vidyqor/config/desktop.py (get_data() returning a list of module-config dicts for the app's desktop, or an empty list stub), vidyqor/config/docs.py (docs source config stub with source_link/docs_base_url/headline placeholders as comments or minimal values).",
+    "Create vidyqor/api/__init__.py, vidyqor/services/__init__.py, vidyqor/utils/__init__.py each with a one-line module docstring describing its purpose.",
+    "Create vidyqor/templates/__init__.py (docstring) and vidyqor/www/.gitkeep (empty).",
+    "Create the 18 module folders in snake_case (institution_management, student_management, admission_management, academic_management, department_management, faculty_management, attendance_management, examination_management, finance_and_fee_management, library_management, hostel_management, transport_management, placement_management, human_resource_management, communication_management, document_management, reports_and_analytics, system_configuration); each gets __init__.py (may be empty or a docstring) and doctype/__init__.py (empty placeholder). NO doctype JSON, NO doctype subfolders beyond doctype/.",
+    "Create vidyqor/tests/__init__.py and vidyqor/tests/test_smoke.py: use 'from frappe.tests.utils import FrappeTestCase' inside the class module but ensure the module still BYTE-COMPILES without frappe installed (compileall only parses, does not import, so a top-level import is fine for compileall; keep the test body trivial, e.g. assert vidyqor.__version__ == '0.1.0'). Add a module docstring noting Frappe is required to RUN it.",
+    "Create vidyqor/public/.gitkeep (empty) and vidyqor/public/images/vidyqor-logo.svg: a real, minimal, valid geometric SVG using deep navy/blue/white/cyan (well-formed XML, <svg xmlns=... viewBox=...>)."
+  ],
+  "acceptance_criteria": [
+    "python3 -m compileall vidyqor exits 0 (all package Python byte-compiles without Frappe installed).",
+    "vidyqor/modules.txt contains exactly 18 non-empty lines in the required Title Case order.",
+    "ls -d vidyqor/*/doctype | wc -l returns 18 (every module folder has a doctype/ subfolder).",
+    "vidyqor/__init__.py defines __version__ = '0.1.0'.",
+    "vidyqor/public/images/vidyqor-logo.svg exists and parses as well-formed XML.",
+    "hooks.py sets required_apps = [] and app_license = 'mit'; no invented email present.",
+    "No doctype JSON files and no ERP business logic were created."
+  ],
+  "verification": [
+    "python3 -m compileall vidyqor  (expect exit 0)",
+    "python3 -c \"lines=[l for l in open('vidyqor/modules.txt').read().splitlines() if l.strip()]; assert len(lines)==18, lines; print('modules ok', len(lines))\"",
+    "bash -c 'test $(ls -d vidyqor/*/doctype 2>/dev/null | wc -l) -eq 18 && echo \"18 doctype dirs ok\"'",
+    "python3 -c \"import xml.dom.minidom as m; m.parse('vidyqor/public/images/vidyqor-logo.svg'); print('svg ok')\"",
+    "python3 -c \"import re; s=open('vidyqor/__init__.py').read(); assert '0.1.0' in s; print('version ok')\"",
+    "Do NOT run Frappe tests (no Frappe environment, Option B)."
+  ],
+  "blocked_reason": null,
+  "findings": "FEAT-001 complete. Package layout for FEAT-002 to reference: (1) Logo asset confirmed at vidyqor/public/images/vidyqor-logo.svg (128x128 viewBox 0 0 128 128, deep-navy #0b1f3a background, blue #1d4ed8/#2563eb and cyan #22d3ee geometric facets, white #ffffff center) — well-formed XML, this is the ONLY image asset; README/docs must reference only this path. (2) __version__ = \"0.1.0\" lives in vidyqor/__init__.py (single line, double-quoted) — flit [tool.flit.module] name=\"vidyqor\" + [project] dynamic=[\"version\"] will read it; CHANGELOG/release tag must match v0.1.0. (3) App identity from hooks.py: app_name='vidyqor', app_title='Vidyqor', app_publisher='Vidyqor Community', app_license='mit', required_apps=[] (no ERPNext/Education/HRMS/CRM dependency); no email anywhere — contact via GitHub Security Advisories + Issues/Discussions. (4) modules.txt has the 18 Title Case modules; 18 snake_case module folders each with doctype/__init__.py placeholder (no doctype JSON). (5) Support subpackages present: config (__init__, desktop.py get_data()->[], docs.py), api, services, utils, templates (docstring __init__), www/.gitkeep, public/.gitkeep, tests/{__init__,test_smoke.py}. (6) tests/test_smoke.py uses FrappeTestCase (top-level import frappe.tests.utils) — byte-compiles via compileall but REQUIRES a Frappe env to run; not executed here (Option B). (7) Verification all green: python3 -m compileall vidyqor exit 0; modules.txt=18 lines; 18 doctype dirs; SVG parses as XML; version 0.1.0 present. __pycache__ artifacts were removed after compile (no .gitignore exists yet — FEAT-002 should add one ignoring __pycache__/*.pyc)."
+}

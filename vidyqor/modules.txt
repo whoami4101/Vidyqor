@@ -1,0 +1,18 @@
+Institution Management
+Student Management
+Admission Management
+Academic Management
+Department Management
+Faculty Management
+Attendance Management
+Examination Management
+Finance And Fee Management
+Library Management
+Hostel Management
+Transport Management
+Placement Management
+Human Resource Management
+Communication Management
+Document Management
+Reports And Analytics
+System Configuration
